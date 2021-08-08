@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.xiaozhao.mapper.KnowledgeDetailMapper">
+    <resultMap id="KnowledgeDetailResultMap" type="KnowledgeDetail">
+        <result column="knowledge_detail_id" jdbcType="INTEGER" property="id" />
+        <result column="knowledge_detail_content" jdbcType="INTEGER" property="content" />
+        <result column="knowledge_detail_category_name" jdbcType="CHAR" property="categoryName" />
+    </resultMap>
+
+    <parameterMap id="KnowledgeDetailParameterMap" type="KnowledgeDetail">
+        <parameter property="id" resultMap="KnowledgeDetailResultMap"/>
+
+
+    </parameterMap>
+
+<!--    select one-->
+    <select id="getDetailByKnowledgeId" parameterType="int" resultMap="KnowledgeDetailResultMap">
+        SELECT knowledge_detail_id, knowledge_detail_content, knowledge_detail_category_name
+        FROM java5_310786_knowledge_detail
+        where knowledge_detail_id = (
+            select knowledge_detail_id from java5_310786_knowledge_relation
+            where knowledge_id = #{id}
+        )
+    </select>
+
+
+    <!--    insert one -->
+    <insert id="">
+        insert into
+        java5_310786_knowledge_detail
+        (knowledge_detail_id, knowledge_detail_content, knowledge_detail_category_name)
+        values(#{id},#{content},#{categoryName});
+    </insert>
+
+    <!--    delete one-->
+    <delete id="">
+        delete from java5_310786_knowledge_detail
+        where knowledge_detail_id = #{id}
+    </delete>
+
+    <!--    update one-->
+    <update id="">
+        UPDATE java5_310786_knowledge_detail
+        knowledge_detail_content = #{content},
+        knowledge_detail_category_name = #{categoryName},
+        WHERE knowledge_detail_id = #{id}
+    </update>
+</mapper>

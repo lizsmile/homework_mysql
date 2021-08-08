@@ -16,13 +16,28 @@ import java.util.List;
  */
 
 @Service
-public class KnowledgeStructureServiceImpl{
+public class KnowledgeStructureService {
 
     @Autowired
     KnowledgeStructureMapper knowledgeStructureMapper;
-    
+
     public List<KnowledgeStructure> getAllKnowledgeStructure() {
         return knowledgeStructureMapper.getAllKnowledgeStructure();
     }
 
+    public KnowledgeStructure getKnowledgeStructureById(int id) {
+        return knowledgeStructureMapper.getKnowledgeStructureById(id);
+    }
+
+    public int insertKnowledgeStructure(KnowledgeStructure entity) {
+        return knowledgeStructureMapper.insertKnowledgeStructure(entity);
+    }
+
+    public int deleteKnowledgeStructureById(int id) {
+        return knowledgeStructureMapper.deleteKnowledgeStructureById(id);
+    }
+
+    public int updateKnowledgeStructure(KnowledgeStructure entity) {
+        return knowledgeStructureMapper.updateKnowledgeStructure(entity);
+    }
 }
