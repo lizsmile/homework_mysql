@@ -12,13 +12,13 @@
     </resultMap>
 
     <parameterMap id="KnowledgeStructureParameterMap" type="KnowledgeStructure">
-        <parameter property="id" resultMap="KnowledgeStructureResultMap"/>
-        <parameter property="parentId" resultMap="KnowledgeStructureResultMap"/>
-        <parameter property="levelIsTop" resultMap="KnowledgeStructureResultMap"/>
-        <parameter property="levelIsLeaf" resultMap="KnowledgeStructureResultMap"/>
-        <parameter property="level" resultMap="KnowledgeStructureResultMap"/>
-        <parameter property="levelName" resultMap="KnowledgeStructureResultMap"/>
-        <parameter property="knowledgePath" resultMap="KnowledgeStructureResultMap"/>
+        <parameter property="id" jdbcType="INTEGER" resultMap="KnowledgeStructureResultMap"/>
+        <parameter property="parentId" jdbcType="INTEGER" resultMap="KnowledgeStructureResultMap"/>
+        <parameter property="levelIsTop" jdbcType="CHAR" resultMap="KnowledgeStructureResultMap"/>
+        <parameter property="levelIsLeaf" jdbcType="CHAR" resultMap="KnowledgeStructureResultMap"/>
+        <parameter property="level" jdbcType="INTEGER" resultMap="KnowledgeStructureResultMap"/>
+        <parameter property="levelName" jdbcType="VARCHAR" resultMap="KnowledgeStructureResultMap"/>
+        <parameter property="knowledgePath" jdbcType="VARCHAR" resultMap="KnowledgeStructureResultMap"/>
 
     </parameterMap>
 

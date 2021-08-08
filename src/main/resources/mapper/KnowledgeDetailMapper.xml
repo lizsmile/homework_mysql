@@ -24,25 +24,25 @@
     </select>
 
 
-    <!--    insert one -->
-    <insert id="">
-        insert into
-        java5_310786_knowledge_detail
-        (knowledge_detail_id, knowledge_detail_content, knowledge_detail_category_name)
-        values(#{id},#{content},#{categoryName});
-    </insert>
+<!--    &lt;!&ndash;    insert one &ndash;&gt;-->
+<!--    <insert id="">-->
+<!--        insert into-->
+<!--        java5_310786_knowledge_detail-->
+<!--        (knowledge_detail_id, knowledge_detail_content, knowledge_detail_category_name)-->
+<!--        values(#{id},#{content},#{categoryName});-->
+<!--    </insert>-->
 
-    <!--    delete one-->
-    <delete id="">
-        delete from java5_310786_knowledge_detail
-        where knowledge_detail_id = #{id}
-    </delete>
+<!--    &lt;!&ndash;    delete one&ndash;&gt;-->
+<!--    <delete id="">-->
+<!--        delete from java5_310786_knowledge_detail-->
+<!--        where knowledge_detail_id = #{id}-->
+<!--    </delete>-->
 
-    <!--    update one-->
-    <update id="">
-        UPDATE java5_310786_knowledge_detail
-        knowledge_detail_content = #{content},
-        knowledge_detail_category_name = #{categoryName},
-        WHERE knowledge_detail_id = #{id}
-    </update>
+<!--    &lt;!&ndash;    update one&ndash;&gt;-->
+<!--    <update id="">-->
+<!--        UPDATE java5_310786_knowledge_detail-->
+<!--        knowledge_detail_content = #{content},-->
+<!--        knowledge_detail_category_name = #{categoryName},-->
+<!--        WHERE knowledge_detail_id = #{id}-->
+<!--    </update>-->
 </mapper>
