@@ -20,7 +20,7 @@ public interface KnowledgeStructureMapper {
     List<KnowledgeStructure> getAllKnowledgeStructure();
     KnowledgeStructure getKnowledgeStructureById(int id);
     // insert
-    void insertKnowledgeStructure(KnowledgeStructure entity);
+    int insertKnowledgeStructure(KnowledgeStructure entity);
     // delete
     int deleteKnowledgeStructureById(int id);
     // update

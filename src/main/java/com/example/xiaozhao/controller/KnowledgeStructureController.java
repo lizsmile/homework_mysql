@@ -5,10 +5,7 @@ import com.example.xiaozhao.dao.KnowledgeStructure;
 import com.example.xiaozhao.service.KnowledgeDetailService;
 import com.example.xiaozhao.service.KnowledgeStructureService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -39,32 +36,49 @@ public class KnowledgeStructureController {
         return knowledgeStructureService.getKnowledgeStructureById(id);
     }
 
-    @RequestMapping("insert")
-    public String insertKnowledgeStructure() {
-        KnowledgeStructure entity = new KnowledgeStructure();
-        knowledgeStructureService.insertKnowledgeStructure(entity);
-        int result = 1;
+    @PostMapping("insert")
+    public String insertKnowledgeStructure(@RequestBody KnowledgeStructure entity) {
+        int result = knowledgeStructureService.insertKnowledgeStructure(entity);
         return result > 0 ? "insert succeed" : "insert failed";
     }
 
-    @RequestMapping("delete/{id}")
+    @DeleteMapping("delete/{id}")
     public String deleteKnowledgeStructureById(@PathVariable int id) {
-        KnowledgeStructure entity = new KnowledgeStructure();
         int result = knowledgeStructureService.deleteKnowledgeStructureById(id);
         return result > 0 ? "delete succeed" : "delete failed";
     }
 
-    @RequestMapping("update/{id}")
-    public String updateKnowledgeStructure(@PathVariable int id) {
-        KnowledgeStructure entity = new KnowledgeStructure();
-        entity.setId(id);
+    @RequestMapping("update")
+    public String updateKnowledgeStructure(@RequestBody KnowledgeStructure entity) {
         int result = knowledgeStructureService.updateKnowledgeStructure(entity);
-        return result > 0 ? "insert succeed" : "insert failed";
+        return result > 0 ? "update succeed" : "update failed";
     }
 
+    // detail
+    @RequestMapping("getDetailByStruct/{id}")
+    public KnowledgeDetail getDetailByKnowledgeStructureId(@PathVariable int id) {
+        return knowledgeDetailService.getDetailByKnowledgeStructureId(id);
+    }
+
+    @RequestMapping("getAllDetail")
+    public List<KnowledgeDetail> getAllDetail() {
+        return knowledgeDetailService.getAllDetail();
+    }
 
     @RequestMapping("getDetail/{id}")
-    public KnowledgeDetail getDetailByKnowledgeId(@PathVariable int id) {
-        return knowledgeDetailService.getDetailByKnowledgeId(id);
+    public KnowledgeDetail getDetailByDetailId(@PathVariable int id) {
+        return knowledgeDetailService.getDetailByDetailId(id);
+    }
+    @RequestMapping("detail/insert")
+    public int insertDetail(@RequestBody KnowledgeDetail entity) {
+        return knowledgeDetailService.insertDetail(entity);
+    }
+    @DeleteMapping("detail/delete/{id}")
+    public int deleteDetailByKnowledgeId(@PathVariable int id) {
+        return knowledgeDetailService.deleteDetailByKnowledgeId(id);
+    }
+    @RequestMapping("detail/update")
+    public int updateDetail(@RequestBody KnowledgeDetail entity) {
+        return knowledgeDetailService.updateDetail(entity);
     }
 }

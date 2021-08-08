@@ -14,8 +14,8 @@
     <parameterMap id="KnowledgeStructureParameterMap" type="KnowledgeStructure">
         <parameter property="id" jdbcType="INTEGER" resultMap="KnowledgeStructureResultMap"/>
         <parameter property="parentId" jdbcType="INTEGER" resultMap="KnowledgeStructureResultMap"/>
-        <parameter property="levelIsTop" jdbcType="CHAR" resultMap="KnowledgeStructureResultMap"/>
-        <parameter property="levelIsLeaf" jdbcType="CHAR" resultMap="KnowledgeStructureResultMap"/>
+        <parameter property="levelIsTop" javaType="Boolean" jdbcType="CHAR" resultMap="KnowledgeStructureResultMap"/>
+        <parameter property="levelIsLeaf" javaType="Boolean" jdbcType="CHAR" resultMap="KnowledgeStructureResultMap"/>
         <parameter property="level" jdbcType="INTEGER" resultMap="KnowledgeStructureResultMap"/>
         <parameter property="levelName" jdbcType="VARCHAR" resultMap="KnowledgeStructureResultMap"/>
         <parameter property="knowledgePath" jdbcType="VARCHAR" resultMap="KnowledgeStructureResultMap"/>
@@ -39,14 +39,14 @@
     </select>
 
     <!--    insert one -->
-    <insert id="insertKnowledgeStructure" parameterMap="KnowledgeStructureParameterMap">
+    <insert id="insertKnowledgeStructure" parameterType="KnowledgeStructure">
         insert into
         java5_310786_knowledge_structure(knowledge_id,knowledge_parent_id,knowledge_level_istop,knowledge_level_isleaf,knowledge_level,knowledge_level_name,knowledge_path)
         values(#{id},#{parentId},#{levelIsTop},#{levelIsLeaf},#{level},#{levelName},#{knowledgePath});
     </insert>
 
     <!--    delete one-->
-    <delete id="deleteKnowledgeStructureById" parameterMap="KnowledgeStructureParameterMap">
+    <delete id="deleteKnowledgeStructureById" >
         delete from java5_310786_knowledge_structure
         where knowledge_id = #{id}
     </delete>
@@ -54,12 +54,13 @@
     <!--    update one-->
     <update id="updateKnowledgeStructure" parameterMap="KnowledgeStructureParameterMap">
         UPDATE java5_310786_knowledge_structure
+        set
         knowledge_parent_id = #{parentId},
         knowledge_level_istop = #{levelIsTop},
         knowledge_level_isleaf = #{levelIsLeaf},
         knowledge_level = #{level},
         knowledge_level_name = #{levelName},
-        knowledge_path = #{knowledgePath},
+        knowledge_path = #{knowledgePath}
         WHERE knowledge_id = #{id}
     </update>
 </mapper>

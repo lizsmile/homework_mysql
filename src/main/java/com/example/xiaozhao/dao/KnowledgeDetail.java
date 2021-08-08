@@ -13,6 +13,7 @@ import lombok.Data;
 public class KnowledgeDetail {
     private Integer id;
     private String content;
+    private Integer categoryId;
     private String categoryName;
 
 }

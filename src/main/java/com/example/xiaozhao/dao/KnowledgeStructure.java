@@ -32,13 +32,4 @@ public class KnowledgeStructure {
                 '}';
     }
 
-    public KnowledgeStructure() {
-        this.id = 5001;
-        this.parentId = 4001;
-        this.levelIsTop = false;
-        this.levelIsLeaf = true;
-        this.level = 5;
-        this.levelName = "level5";
-        this.knowledgePath = "path5";
-    }
 }

@@ -29,8 +29,8 @@ public class KnowledgeStructureService {
         return knowledgeStructureMapper.getKnowledgeStructureById(id);
     }
 
-    public void insertKnowledgeStructure(KnowledgeStructure entity) {
-        knowledgeStructureMapper.insertKnowledgeStructure(entity);
+    public int insertKnowledgeStructure(KnowledgeStructure entity) {
+        return knowledgeStructureMapper.insertKnowledgeStructure(entity);
     }
 
     public int deleteKnowledgeStructureById(int id) {

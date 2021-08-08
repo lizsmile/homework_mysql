@@ -4,18 +4,31 @@
     <resultMap id="KnowledgeDetailResultMap" type="KnowledgeDetail">
         <result column="knowledge_detail_id" jdbcType="INTEGER" property="id" />
         <result column="knowledge_detail_content" jdbcType="INTEGER" property="content" />
-        <result column="knowledge_detail_category_name" jdbcType="CHAR" property="categoryName" />
+        <result column="knowledge_detail_category_id" jdbcType="INTEGER" property="categoryId" />
+        <result column="knowledge_detail_category_name" jdbcType="VARCHAR" property="categoryName" />
     </resultMap>
 
     <parameterMap id="KnowledgeDetailParameterMap" type="KnowledgeDetail">
-        <parameter property="id" resultMap="KnowledgeDetailResultMap"/>
-
-
+        <parameter property="id" jdbcType="INTEGER" resultMap="KnowledgeDetailResultMap"/>
+        <parameter property="content" jdbcType="INTEGER" resultMap="KnowledgeDetailResultMap"/>
+        <parameter property="categoryId" jdbcType="INTEGER" resultMap="KnowledgeDetailResultMap"/>
+        <parameter property="categoryName" jdbcType="VARCHAR" resultMap="KnowledgeDetailResultMap"/>
     </parameterMap>
 
-<!--    select one-->
-    <select id="getDetailByKnowledgeId" parameterType="int" resultMap="KnowledgeDetailResultMap">
-        SELECT knowledge_detail_id, knowledge_detail_content, knowledge_detail_category_name
+    <select id="getAllDetail" resultMap="KnowledgeDetailResultMap">
+        SELECT knowledge_detail_id, knowledge_detail_content, knowledge_detail_category_id, knowledge_detail_category_name
+        FROM java5_310786_knowledge_detail
+    </select>
+
+    <select id="getDetailByDetailId" resultMap="KnowledgeDetailResultMap">
+        SELECT knowledge_detail_id, knowledge_detail_content, knowledge_detail_category_id, knowledge_detail_category_name
+        FROM java5_310786_knowledge_detail
+        where knowledge_detail_id = #{id}
+    </select>
+
+<!--    speciall : select one by struct id-->
+    <select id="getDetailByKnowledgeStructureId" parameterType="int" resultMap="KnowledgeDetailResultMap">
+        SELECT knowledge_detail_id, knowledge_detail_content, knowledge_detail_category_id, knowledge_detail_category_name
         FROM java5_310786_knowledge_detail
         where knowledge_detail_id = (
             select knowledge_detail_id from java5_310786_knowledge_relation
@@ -23,26 +36,27 @@
         )
     </select>
 
+    <!--    insert one -->
+    <insert id="insertDetail" parameterMap="KnowledgeDetailParameterMap">
+        insert into
+        java5_310786_knowledge_detail
+        (knowledge_detail_id, knowledge_detail_content, knowledge_detail_category_id, knowledge_detail_category_name)
+        values(#{id},#{content},#{categoryId},#{categoryName});
+    </insert>
 
-<!--    &lt;!&ndash;    insert one &ndash;&gt;-->
-<!--    <insert id="">-->
-<!--        insert into-->
-<!--        java5_310786_knowledge_detail-->
-<!--        (knowledge_detail_id, knowledge_detail_content, knowledge_detail_category_name)-->
-<!--        values(#{id},#{content},#{categoryName});-->
-<!--    </insert>-->
+    <!--    delete one-->
+    <delete id="deleteDetailByKnowledgeId" parameterType="int">
+        delete from java5_310786_knowledge_detail
+        where knowledge_detail_id = #{id}
+    </delete>
 
-<!--    &lt;!&ndash;    delete one&ndash;&gt;-->
-<!--    <delete id="">-->
-<!--        delete from java5_310786_knowledge_detail-->
-<!--        where knowledge_detail_id = #{id}-->
-<!--    </delete>-->
-
-<!--    &lt;!&ndash;    update one&ndash;&gt;-->
-<!--    <update id="">-->
-<!--        UPDATE java5_310786_knowledge_detail-->
-<!--        knowledge_detail_content = #{content},-->
-<!--        knowledge_detail_category_name = #{categoryName},-->
-<!--        WHERE knowledge_detail_id = #{id}-->
-<!--    </update>-->
+    <!--    update one-->
+    <update id="updateDetail" parameterMap="KnowledgeDetailParameterMap">
+        UPDATE java5_310786_knowledge_detail
+        set
+        knowledge_detail_content = #{content},
+        knowledge_detail_category_id = #{categoryId},
+        knowledge_detail_category_name = #{categoryName}
+        WHERE knowledge_detail_id = #{id}
+    </update>
 </mapper>

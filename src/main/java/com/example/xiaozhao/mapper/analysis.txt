@@ -1,0 +1,24 @@
+1.
+select count(knowledge_detail_id)
+from java5_310786_knowledge_detail;
+
+2.
+select knowledge_detail_category_name, count(knowledge_detail_category_id)
+from java5_310786_knowledge_detail
+group by knowledge_detail_category_name;
+
+3.
+select knowledge_detail_category_name, count(knowledge_detail_category_id)
+from java5_310786_knowledge_detail
+group by knowledge_detail_category_id
+order by count(knowledge_detail_category_id) desc
+limit 5;
+
+4.
+select knowledge_detail_category_name, count(sub.subscription_user_id)
+from java5_310786_knowledge_detail as detail
+right join java5_310786_knowledge_subscription as sub
+on detail.knowledge_detail_id = sub.knowledge_detail_id
+group by knowledge_detail_category_name
+order by count(sub.subscription_user_id) desc
+limit 1;
