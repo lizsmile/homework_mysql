@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com/example/xiaozhao/mapper/KnowledgeStructureMapper">
+
+    <resultMap id="KnowledgeStructureResultMap" type="KnowledgeStructure">
+        <result column="knowledge_id" jdbcType="INTEGER" property="id" />
+        <result column="knowledge_parent_id" jdbcType="INTEGER" property="parentId" />
+        <result column="knowledge_level_istop" jdbcType="CHAR" property="levelIsTop" />
+        <result column="knowledge_level_isleaf" jdbcType="CHAR" property="levelIsLeaf" />
+        <result column="knowledge_level" jdbcType="INTEGER" property="level" />
+        <result column="knowledge_level_name" jdbcType="VARCHAR" property="levelName" />
+        <result column="knowledge_path" jdbcType="VARCHAR" property="knowledgePath" />
+    </resultMap>
+
+    <select id="getAllKnowledgeStructure" resultType="KnowledgeStructure">
+        select knowledge_id, knowledge_parent_id, knowledge_level_istop,
+        knowledge_level_isleaf, knowledge_level, knowledge_level_name,
+        knowledge_path from java5_310786_knowledge_structure
+    </select>
+
+</mapper>
